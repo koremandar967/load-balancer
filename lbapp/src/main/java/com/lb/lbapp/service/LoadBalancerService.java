@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -17,6 +18,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import com.lb.lbapp.utils.Constants;
 
 
 @Service
@@ -42,7 +45,7 @@ public class LoadBalancerService {
 
 			Set<Integer> alivePortNumbers = healthCheckService.getAlivePortNumbers();
 
-//			logger.info("alivePortNumbers " + Arrays.toString(alivePortNumbers.toArray()));
+			logger.info("alivePortNumbers " + Arrays.toString(alivePortNumbers.toArray()));
 
 			List<Integer> liveServers = new ArrayList<>(alivePortNumbers);
 
@@ -71,7 +74,7 @@ public class LoadBalancerService {
 					response.append(inputLine);
 				}
 				in.close();
-//				logger.info(response.toString());
+				logger.info(response.toString());
 
 				return CompletableFuture.completedFuture(ResponseEntity.ok(response.toString()));
 
@@ -88,4 +91,6 @@ public class LoadBalancerService {
 		return CompletableFuture.completedFuture((ResponseEntity<?>) ResponseEntity.status(HttpStatus.GATEWAY_TIMEOUT));
 	}
 
+
+	
 }

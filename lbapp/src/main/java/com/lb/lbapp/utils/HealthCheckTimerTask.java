@@ -37,7 +37,7 @@ public class HealthCheckTimerTask extends TimerTask {
 			
 //			System.out.printf("Running for port number : %s at %s%n",portNumber,LocalDateTime.now());
 			
-			String serverUrl = "http://localhost:" + portNumber + "/health";
+			String serverUrl = "http://localhost:" + portNumber + Constants.HEALTH_URL;
 			
 			URL url;
 			try {

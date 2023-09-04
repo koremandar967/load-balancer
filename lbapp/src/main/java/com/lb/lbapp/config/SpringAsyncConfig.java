@@ -30,7 +30,7 @@ public class SpringAsyncConfig implements AsyncConfigurer {
 		executor.initialize();
 		
 		System.out.printf("ThreadPoolTaskExecutor Properties -corePoolSize:%s; maxPoolSize:%s; "
-				+ "poolSize:%s; activeCount:%s;",executor.getCorePoolSize(),executor.getMaxPoolSize(),
+				+ "poolSize:%s; activeCount:%s;%n",executor.getCorePoolSize(),executor.getMaxPoolSize(),
 				executor.getPoolSize(),executor.getActiveCount());
 		
 		return executor;
