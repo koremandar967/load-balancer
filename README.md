@@ -1,4 +1,4 @@
-![Screenshot from 2023-09-04 20-46-39](https://github.com/koremandar967/load-balancer/assets/25133340/aec9f40e-269a-404e-b26d-d9d6b5809c17)# load-balancer
+# load-balancer
 It is simple load balancer which sits in front of a group of servers and routes client requests across all of the servers that can process those requests. 
 If a server goes offline the load balancer redirects traffic to the remaining live servers.
 
