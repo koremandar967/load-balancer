@@ -2,7 +2,9 @@ package com.server;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.LocalTime;
 
+import com.server.utils.Constants;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -31,7 +33,7 @@ public class WebHttpHandler implements HttpHandler {
 	
 	private String handleGetRequest(HttpExchange httpExchange) {
 
-		System.out.printf("URI: %s; portNumber:  %s%n",httpExchange.getRequestURI(),portNumber);
+		System.out.printf("URI: %s; portNumber:  %s; timestamp: %s%n",httpExchange.getRequestURI(),portNumber,LocalTime.now());
 		
 		return httpExchange.getRequestURI().toString();
 	}
@@ -39,6 +41,12 @@ public class WebHttpHandler implements HttpHandler {
 	private void handleResponse(HttpExchange httpExchange, String requestParamValue) throws IOException {
 		OutputStream outputStream = httpExchange.getResponseBody();
 		StringBuilder responseBuilder = new StringBuilder();
+
+		String uri = httpExchange.getRequestURI().toString();
+		
+		if(uri.equals(Constants.TEST_URL)) {
+			responseBuilder.append("Hello from the web server running on port " + portNumber);
+		} 
 		
 		String response = responseBuilder.toString();
 		httpExchange.sendResponseHeaders(200, response.length());

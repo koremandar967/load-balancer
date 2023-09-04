@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import com.server.utils.Constants;
 import com.sun.net.httpserver.HttpServer;
 
 public class WebServer {
@@ -28,8 +29,8 @@ public class WebServer {
 				
 				WebHttpHandler webHttpHandler = new WebHttpHandler(portNumber);
 				
-				server.createContext("/test",webHttpHandler);
-				server.createContext("/health",webHttpHandler);
+				server.createContext(Constants.TEST_URL,webHttpHandler);
+				server.createContext(Constants.HEALTH_URL,webHttpHandler);
 				server.setExecutor(threadPoolExecutor);
 				server.start();
 				
